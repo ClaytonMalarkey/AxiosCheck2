@@ -28,5 +28,9 @@ function diplaydata(datafromResponse) {
 }
 
 axios.request({
-    url: `www.themealdb.com/api/json/v1/1/random.php`
+    url: `www.themealdb.com/api/json/v1/1/filter.php`,
+    
+    params: {
+        c:'chicken'
+    }
 }).then(successFunction).catch(failureFunction);
