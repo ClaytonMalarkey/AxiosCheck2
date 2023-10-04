@@ -1,4 +1,12 @@
 let databody = document.body;
+let formsubmisson= document.getElementById("formsubmitted");
+
+formsubmisson.addEventListener("submit", (e) => {
+    e.preventDefault();
+    postsubmit(e);
+  
+    // handle submit
+});
 
 function successFunction(response) {
     // Do success code here
@@ -7,6 +15,10 @@ function successFunction(response) {
     const datafromResponse= response.meals;
     diplaydata(datafromResponse);
 
+}
+
+function success2(response){
+    console.log(response);
 }
 function failureFunction(error) {
     // Do failure code here
@@ -27,10 +39,15 @@ function diplaydata(datafromResponse) {
     }
 }
 
-axios.request({
-    url: `www.themealdb.com/api/json/v1/1/filter.php`,
-    
-    params: {
-        c:'chicken'
-    }
-}).then(successFunction).catch(failureFunction);
+
+function postsubmit (formsubmisson) {
+    axios.post('https://jsonplaceholder.typicode.com/posts', {
+        
+    title: formsubmisson.title,
+    body: formsubmisson.body,
+    userId  : formsubmisson.userId
+
+}).then(success2).catch(failureFunction);
+}
+
+
